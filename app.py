@@ -88,7 +88,9 @@ def run():
                 straight_line_lw=1,
                 last_circle_color="white",  # White circle
                 last_circle_lw=2,
-                other_circle_lw=0,  # We'll add our own circles
+                other_circle_lw=1,  # Enable other circles
+                other_circle_ls='--',  # Make them dashed
+                other_circle_color='#333333',  # Subtle gray color
                 inner_circle_size=15
             )
 
