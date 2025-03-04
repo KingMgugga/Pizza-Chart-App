@@ -88,14 +88,9 @@ def run():
                 straight_line_lw=1,
                 last_circle_color="white",  # White circle
                 last_circle_lw=2,
-                other_circle_lw=1,  # Enable other circles
-                other_circle_ls='--',  # Make them dashed
-                other_circle_color='#333333',  # Subtle gray color
+                other_circle_lw=0,  # We'll add our own circles
                 inner_circle_size=15
             )
-
-            # Create circles at 20, 40, 60, 80
-            baker.draw_circles(20, 40, 60, 80)
 
             fig, ax = baker.make_pizza(
                 values,
@@ -109,6 +104,13 @@ def run():
                     bbox=dict(edgecolor="white", facecolor='#181818', boxstyle="round,pad=0.2", lw=1.5)
                 )
             )
+
+            # Add dashed circles at 20, 40, 60, 80
+            circle_radii = [0.2, 0.4, 0.6, 0.8]  # Normalized radii for the circles
+            for radius in circle_radii:
+                circle = plt.Circle((0, 0), radius, fill=False, color='#333333', 
+                                  linestyle='--', linewidth=0.5, alpha=0.5)
+                ax.add_artist(circle)
 
             ax.set_facecolor('#020103')
 
