@@ -110,7 +110,7 @@ def run():
             for radius in circle_radii:
                 circle = plt.Circle((0, 0), radius, fill=False, color='#333333', 
                                   linestyle='--', linewidth=0.5, alpha=0.5)
-                ax.add_artist(circle)
+                ax.add_patch(circle)
 
             ax.set_facecolor('#020103')
 
