@@ -87,7 +87,7 @@ def run():
                 straight_line_color="white",  # White lines
                 straight_line_lw=1,
                 last_circle_color="white",  # White circle
-                last_circle_lw=1,
+                last_circle_lw=2,
                 other_circle_lw=0,
                 inner_circle_size=15
             )
