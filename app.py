@@ -55,8 +55,8 @@ def run():
         # Metrics
         available_metrics = {
             "gambling_score": "Gambling",
-            "lending_score": "Lending",
             "perpetuals_score": "Perpetuals",
+            "lending_score": "Lending",
             "nft_score": "NFTs",
             "dex_score": "DEX",
             "staking_score": "Staking"
@@ -71,12 +71,10 @@ def run():
         values = [metric_values[m] for m in selected_columns]
         params = [available_metrics[m] for m in selected_columns]
 
-        # CMAP
-        norm = mcolors.Normalize(vmin=0, vmax=100)
-        start_color = '#2E2E2A'
-        end_color = st.color_picker("Select Color Scheme", value="#440981")
-        custom_colormap = mcolors.LinearSegmentedColormap.from_list("custom_gradient", [start_color, end_color], N=100)
-        slice_colors = [custom_colormap(norm(value)) for value in values]
+        # Set specific colors for each pair of metrics
+        slice_colors = ['#0085CA', '#0085CA',  # First two metrics (Gambling, Perpetuals)
+                       '#f24a4a', '#f24a4a',  # Second two metrics (Lending, NFTs)
+                       '#00ad2b', '#00ad2b']  # Last two metrics (DEX, Staking)
 
         # Pizza Chart
         if st.button("Generate Chart"):
@@ -120,7 +118,7 @@ def run():
             )
 
             # Text effect
-            text_effect = [path_effects.Stroke(linewidth=2.5, foreground=end_color), path_effects.Normal()]
+            text_effect = [path_effects.Stroke(linewidth=2.5, foreground='#0085CA'), path_effects.Normal()]
 
             # Overall_score
             ax.text(
@@ -130,7 +128,7 @@ def run():
             )
 
             # Lines
-            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color=end_color, linewidth=8, alpha=1, transform=fig.transFigure))
+            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color='#0085CA', linewidth=8, alpha=1, transform=fig.transFigure))
             fig.add_artist(plt.Line2D((0, 1), (0.88, 0.88), color="#e9eae3", linewidth=0.0001, alpha=0, zorder=-10, transform=fig.transFigure))
 
             # Display
