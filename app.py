@@ -105,7 +105,7 @@ def run():
                 kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, alpha=0.7, color=[
                     '#00a7ff', '#00a7ff',  # Brighter Blue
                     '#ff5555', '#ff5555',  # Brighter Red
-                    '#00ff3c', '#00ff3c'   # Brighter Green
+                    '#00d934', '#00d934'   # Brighter Green
                 ]),
                 kwargs_params=dict(color="white", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
