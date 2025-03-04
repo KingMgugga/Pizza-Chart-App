@@ -141,6 +141,11 @@ def run():
             center_radius = 0.25
             angles = np.linspace(0, 2*np.pi, 100)
             
+            # Create solid background circle first
+            background_circle = plt.Circle((0, -15), center_radius, facecolor='#020103', edgecolor='white', 
+                                        linewidth=1, zorder=1)
+            ax.add_patch(background_circle)
+            
             # Create three circles with radial gradients for each color
             for i, color in enumerate(['#0085CA', '#f24a4a', '#00ad2b']):
                 angle_start = i * 2*np.pi/3
@@ -148,14 +153,10 @@ def run():
                 mask_angles = angles[(angles >= angle_start) & (angles < angle_end)]
                 
                 # Create radial gradient for each section
-                for r in np.linspace(0, center_radius, 10):
+                for r in np.linspace(0, center_radius * 0.95, 10):  # Slightly smaller to show border
                     alpha = 0.3 * (r/center_radius)  # Fade towards center
-                    circle = plt.Circle((0, -15), r, color=color, alpha=alpha, zorder=1)
+                    circle = plt.Circle((0, -15), r, color=color, alpha=alpha, zorder=2)
                     ax.add_patch(circle)
-
-            # Add white border circle
-            border_circle = plt.Circle((0, -15), center_radius, fill=False, color='white', linewidth=2, zorder=2)
-            ax.add_patch(border_circle)
             
             # Center the overall score with adjusted position (on top of the blended circle)
             ax.text(
