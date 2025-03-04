@@ -83,10 +83,10 @@ def run():
         if st.button("Generate Chart"):
             baker = PyPizza(
                 params=params,
-                background_color="#e9eae3",
-                straight_line_color="white",
+                background_color="#020103",  # Dark background
+                straight_line_color="white",  # White lines
                 straight_line_lw=1,
-                last_circle_color="white",
+                last_circle_color="white",  # White circle
                 last_circle_lw=1,
                 other_circle_lw=0,
                 inner_circle_size=15
@@ -98,37 +98,39 @@ def run():
                 blank_alpha=0.1,
                 param_location=111,
                 kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, color=slice_colors),
-                kwargs_params=dict(color="black", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
+                kwargs_params=dict(color="white", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
-                    color="black", fontsize=16, fontproperties=font_b, zorder=3,
-                    bbox=dict(edgecolor="black", facecolor='#e9eae3', boxstyle="round,pad=0.2", lw=1.5)
+                    color="white", fontsize=16, fontproperties=font_b, zorder=3,
+                    bbox=dict(edgecolor="white", facecolor='#181818', boxstyle="round,pad=0.2", lw=1.5)
                 )
             )
 
-            ax.set_facecolor('#d9dad2')
+            ax.set_facecolor('#020103')
 
             # Titles
             fig.text(
                 0.04, 0.960, chart_title, size=30,
-                ha="left", fontproperties=font_b, color='black'
+                ha="left", fontproperties=font_b, color='white'
             )
         
             fig.text(
                 0.04, 0.920,
                 chart_suptitle,
                 size=18,
-                ha="left", fontproperties=font_r, color='#2E2E2A', alpha=0.8
+                ha="left", fontproperties=font_r, color='white', alpha=0.8
             )
 
             # Overall_score
             ax.text(
                 0, -15, f"{overall_score}", fontsize=32, alpha=1, fontproperties=font_b,
-                ha="center", va="center", color="black"
+                ha="center", va="center", color="white"
             )
 
             # Lines
-            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color='black', linewidth=8, alpha=1, transform=fig.transFigure))
-            fig.add_artist(plt.Line2D((0, 1), (0.88, 0.88), color="#e9eae3", linewidth=0.0001, alpha=0, zorder=-10, transform=fig.transFigure))
+            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color='white', linewidth=8, alpha=1, transform=fig.transFigure))
+            fig.add_artist(plt.Line2D((0, 1), (0.88, 0.88), color="#020103", linewidth=0.0001, alpha=0, zorder=-10, transform=fig.transFigure))
+
+            fig.patch.set_facecolor('#020103')  # Set figure background to dark
 
             # Display
             st.pyplot(fig)
