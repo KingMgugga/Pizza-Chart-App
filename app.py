@@ -137,16 +137,30 @@ def run():
                 ha="left", fontproperties=font_r, color='white', alpha=0.8
             )
 
-            # Overall_score
-            # Add white circle border
-            border_circle = plt.Circle((0, -15), radius=0.2, fill=False, color='white', linewidth=2)
+            # Create center circle with blended colors
+            center_radius = 0.25
+            angles = np.linspace(0, 2*np.pi, 100)
+            
+            # Create three circles with radial gradients for each color
+            for i, color in enumerate(['#0085CA', '#f24a4a', '#00ad2b']):
+                angle_start = i * 2*np.pi/3
+                angle_end = (i + 1) * 2*np.pi/3
+                mask_angles = angles[(angles >= angle_start) & (angles < angle_end)]
+                
+                # Create radial gradient for each section
+                for r in np.linspace(0, center_radius, 10):
+                    alpha = 0.3 * (r/center_radius)  # Fade towards center
+                    circle = plt.Circle((0, -15), r, color=color, alpha=alpha, zorder=1)
+                    ax.add_patch(circle)
+
+            # Add white border circle
+            border_circle = plt.Circle((0, -15), center_radius, fill=False, color='white', linewidth=2, zorder=2)
             ax.add_patch(border_circle)
             
-            # Center the overall score with adjusted position
+            # Center the overall score with adjusted position (on top of the blended circle)
             ax.text(
                 0, -15, f"{overall_score}", fontsize=32, alpha=1, fontproperties=font_b,
-                ha="center", va="center", color="white",
-                bbox=dict(facecolor='none', edgecolor='none')  # Remove any background box
+                ha="center", va="center", color="white", zorder=3
             )
 
             # Lines
