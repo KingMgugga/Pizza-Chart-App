@@ -35,9 +35,6 @@ def run():
     search_input = st.text_input("Enter Wallet Address").strip()
     username_input = st.text_input("Enter Username").strip()
     
-    # Add transparency slider
-    transparency = st.slider("Slice Transparency", 0, 100, 0, help="Adjust the transparency of the chart slices (0 = solid, 100 = fully transparent)")
-    
     # Filtering
     if search_input:
         filtered_wallets = df[df['wallet_address'].str.contains(search_input, case=False, na=False)]
@@ -77,10 +74,10 @@ def run():
         values = [metric_values[m] for m in selected_columns]
         params = [available_metrics[m] for m in selected_columns]
 
-        # Calculate alpha value from transparency slider (convert from 0-100 to 0-1)
-        alpha = 1 - (transparency / 100)
+        # Set fixed 25% transparency (alpha = 0.75)
+        alpha = 0.75
 
-        # Set specific colors for each pair of metrics with transparency
+        # Set specific colors for each pair of metrics with fixed transparency
         slice_colors = [
             f'#{0x00:02x}{0x85:02x}{0xCA:02x}{int(alpha * 255):02x}',  # First two metrics (Gambling, Perpetuals)
             f'#{0x00:02x}{0x85:02x}{0xCA:02x}{int(alpha * 255):02x}',
