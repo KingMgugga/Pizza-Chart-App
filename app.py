@@ -95,9 +95,9 @@ def run():
                 blank_alpha=0.1,
                 param_location=111,
                 kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, color=slice_colors),
-                kwargs_params=dict(color="black", fontsize=20, fontproperties=font_r, zorder=2, va="center"),
+                kwargs_params=dict(color="black", fontsize=24, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
-                    color="black", fontsize=20, fontproperties=font_b, zorder=3,
+                    color="black", fontsize=16, fontproperties=font_b, zorder=3,
                     bbox=dict(edgecolor="black", facecolor='#e9eae3', boxstyle="round,pad=0.2", lw=1.5)
                 )
             )
