@@ -138,9 +138,15 @@ def run():
             )
 
             # Overall_score
+            # Add white circle border
+            border_circle = plt.Circle((0, -15), radius=0.2, fill=False, color='white', linewidth=2)
+            ax.add_patch(border_circle)
+            
+            # Center the overall score with adjusted position
             ax.text(
                 0, -15, f"{overall_score}", fontsize=32, alpha=1, fontproperties=font_b,
-                ha="center", va="center", color="white"
+                ha="center", va="center", color="white",
+                bbox=dict(facecolor='none', edgecolor='none')  # Remove any background box
             )
 
             # Lines
