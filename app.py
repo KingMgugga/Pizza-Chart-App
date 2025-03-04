@@ -114,9 +114,9 @@ def run():
             )
         
             fig.text(
-                0.04, 0.935,
+                0.04, 0.920,
                 chart_suptitle,
-                size=20,
+                size=18,
                 ha="left", fontproperties=font_r, color='#2E2E2A', alpha=0.8
             )
 
@@ -127,7 +127,7 @@ def run():
             )
 
             # Lines
-            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color='#0085CA', linewidth=8, alpha=1, transform=fig.transFigure))
+            fig.add_artist(plt.Line2D((0.0425, 0.9575), (0.900, 0.900), color='black', linewidth=8, alpha=1, transform=fig.transFigure))
             fig.add_artist(plt.Line2D((0, 1), (0.88, 0.88), color="#e9eae3", linewidth=0.0001, alpha=0, zorder=-10, transform=fig.transFigure))
 
             # Display
