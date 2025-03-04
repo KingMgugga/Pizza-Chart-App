@@ -88,16 +88,9 @@ def run():
                 straight_line_lw=1,
                 last_circle_color="white",  # White circle
                 last_circle_lw=2,
-                other_circle_lw=1,  # Enable other circles
-                other_circle_ls='--',  # Make them dashed
-                other_circle_color='#333333',  # Subtle gray color
-                inner_circle_size=15,
-                straight_line_alpha=0.7,  # Add alpha for straight lines
-                other_circle_alpha=0.3  # Add alpha for other circles
+                other_circle_lw=0,
+                inner_circle_size=15
             )
-
-            # Calculate circle positions for 20, 40, 60, 80
-            baker.circle_values = [20, 40, 60, 80]
 
             fig, ax = baker.make_pizza(
                 values,
