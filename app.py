@@ -96,26 +96,32 @@ def run():
                 other_circle_lw=1,  # Enable other circles
                 other_circle_ls='--',  # Make them dashed
                 other_circle_color='#333333',  # Subtle gray color
-                inner_circle_size=15,
-                straight_line_alpha=0.7,  # Add alpha for straight lines
-                other_circle_alpha=0.3  # Add alpha for other circles
+                inner_circle_size=15
             )
-
-            # Calculate circle positions for 20, 40, 60, 80
-            baker.circle_values = [20, 40, 60, 80]
 
             fig, ax = baker.make_pizza(
                 values,
                 figsize=(9.5, 11),
                 blank_alpha=0.1,
                 param_location=111,
-                kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, color=slice_colors),
+                kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, alpha=0.7, color=[
+                    '#0085CA', '#0085CA',  # Blue
+                    '#f24a4a', '#f24a4a',  # Red
+                    '#00ad2b', '#00ad2b'   # Green
+                ]),
                 kwargs_params=dict(color="white", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
                     color="white", fontsize=16, fontproperties=font_b, zorder=3,
                     bbox=dict(edgecolor="white", facecolor='#181818', boxstyle="round,pad=0.2", lw=1.5)
                 )
             )
+
+            # Add circles manually after creating the plot
+            circle_values = [20, 40, 60, 80]
+            for value in circle_values:
+                circle = plt.Circle((0, 0), value, fill=False, color='#333333', 
+                                  linestyle='--', linewidth=1, alpha=0.3)
+                ax.add_artist(circle)
 
             ax.set_facecolor('#020103')
 
