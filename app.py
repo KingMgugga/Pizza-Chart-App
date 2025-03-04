@@ -74,10 +74,15 @@ def run():
         values = [metric_values[m] for m in selected_columns]
         params = [available_metrics[m] for m in selected_columns]
 
-        # Set specific colors for each pair of metrics
-        slice_colors = ['#0085CA', '#0085CA',  # First two metrics (Gambling, Perpetuals)
-                       '#f24a4a', '#f24a4a',  # Second two metrics (Lending, NFTs)
-                       '#00ad2b', '#00ad2b']  # Last two metrics (DEX, Staking)
+        # Set specific colors for each pair of metrics with increased brightness and 70% opacity
+        slice_colors = [
+            (0, 157, 255, 0.7),  # Brighter blue with 70% opacity
+            (0, 157, 255, 0.7),  # First two metrics (Gambling, Perpetuals)
+            (255, 99, 99, 0.7),  # Brighter red with 70% opacity
+            (255, 99, 99, 0.7),  # Second two metrics (Lending, NFTs)
+            (0, 255, 85, 0.7),   # Brighter green with 70% opacity
+            (0, 255, 85, 0.7)    # Last two metrics (DEX, Staking)
+        ]
 
         # Pizza Chart
         if st.button("Generate Chart"):
