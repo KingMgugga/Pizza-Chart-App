@@ -33,8 +33,7 @@ def run():
 
     # Input
     search_input = st.text_input("Enter Wallet Address").strip()
-    title_input = st.text_input("Enter Chart Title", "Insert The Title").strip()
-    suptitle_input = st.text_input("Enter Chart Suptitle", "Insert Suptitle").strip()
+    username_input = st.text_input("Enter Username").strip()
 
     # Filtering
     if search_input:
@@ -63,8 +62,12 @@ def run():
         }
 
         # Extraction
-        metric_values = {metric: round(wallet_data[metric]) for metric in available_metrics.keys()}
+        metric_values = {metric: max(20, round(wallet_data[metric])) for metric in available_metrics.keys()}
         overall_score = round(wallet_data["overall_score"])  # Get overall_score separately
+
+        # Generate title and suptitle
+        chart_title = f"{username_input} Score"
+        chart_suptitle = f"Overall Score: {overall_score}"
 
         # Use all metrics
         selected_columns = list(available_metrics.keys())
@@ -95,7 +98,7 @@ def run():
                 blank_alpha=0.1,
                 param_location=111,
                 kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, color=slice_colors),
-                kwargs_params=dict(color="black", fontsize=24, fontproperties=font_r, zorder=2, va="center"),
+                kwargs_params=dict(color="black", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
                     color="black", fontsize=16, fontproperties=font_b, zorder=3,
                     bbox=dict(edgecolor="black", facecolor='#e9eae3', boxstyle="round,pad=0.2", lw=1.5)
@@ -106,25 +109,21 @@ def run():
 
             # Titles
             fig.text(
-                0.04, 0.960, title_input, size=30,
+                0.04, 0.960, chart_title, size=30,
                 ha="left", fontproperties=font_b, color='black'
             )
         
             fig.text(
                 0.04, 0.935,
-                suptitle_input,
-                size=15,
+                chart_suptitle,
+                size=20,
                 ha="left", fontproperties=font_r, color='#2E2E2A', alpha=0.8
             )
-
-            # Text effect
-            text_effect = [path_effects.Stroke(linewidth=2.5, foreground='#0085CA'), path_effects.Normal()]
 
             # Overall_score
             ax.text(
                 0, -15, f"{overall_score}", fontsize=32, alpha=1, fontproperties=font_b,
-                ha="center", va="center", color="black", bbox=dict(facecolor="none", edgecolor="none", boxstyle="circle,pad=0", zorder=-10),
-                path_effects=text_effect
+                ha="center", va="center", color="black"
             )
 
             # Lines
