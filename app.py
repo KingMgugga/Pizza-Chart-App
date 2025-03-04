@@ -34,7 +34,10 @@ def run():
     # Input
     search_input = st.text_input("Enter Wallet Address").strip()
     username_input = st.text_input("Enter Username").strip()
-
+    
+    # Add transparency slider
+    transparency = st.slider("Slice Transparency", 0, 100, 0, help="Adjust the transparency of the chart slices (0 = solid, 100 = fully transparent)")
+    
     # Filtering
     if search_input:
         filtered_wallets = df[df['wallet_address'].str.contains(search_input, case=False, na=False)]
@@ -74,10 +77,18 @@ def run():
         values = [metric_values[m] for m in selected_columns]
         params = [available_metrics[m] for m in selected_columns]
 
-        # Set specific colors for each pair of metrics
-        slice_colors = ['#0085CA', '#0085CA',  # First two metrics (Gambling, Perpetuals)
-                       '#f24a4a', '#f24a4a',  # Second two metrics (Lending, NFTs)
-                       '#00ad2b', '#00ad2b']  # Last two metrics (DEX, Staking)
+        # Calculate alpha value from transparency slider (convert from 0-100 to 0-1)
+        alpha = 1 - (transparency / 100)
+
+        # Set specific colors for each pair of metrics with transparency
+        slice_colors = [
+            f'#{0x00:02x}{0x85:02x}{0xCA:02x}{int(alpha * 255):02x}',  # First two metrics (Gambling, Perpetuals)
+            f'#{0x00:02x}{0x85:02x}{0xCA:02x}{int(alpha * 255):02x}',
+            f'#{0xf2:02x}{0x4a:02x}{0x4a:02x}{int(alpha * 255):02x}',  # Second two metrics (Lending, NFTs)
+            f'#{0xf2:02x}{0x4a:02x}{0x4a:02x}{int(alpha * 255):02x}',
+            f'#{0x00:02x}{0xad:02x}{0x2b:02x}{int(alpha * 255):02x}',  # Last two metrics (DEX, Staking)
+            f'#{0x00:02x}{0xad:02x}{0x2b:02x}{int(alpha * 255):02x}'
+        ]
 
         # Pizza Chart
         if st.button("Generate Chart"):
