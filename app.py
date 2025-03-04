@@ -93,9 +93,7 @@ def run():
                 straight_line_lw=1,
                 last_circle_color="white",  # White circle
                 last_circle_lw=2,
-                other_circle_lw=1,  # Enable other circles
-                other_circle_ls='--',  # Make them dashed
-                other_circle_color='#333333',  # Subtle gray color
+                other_circle_lw=0,  # Disable default circles
                 inner_circle_size=15
             )
 
@@ -105,9 +103,9 @@ def run():
                 blank_alpha=0.1,
                 param_location=111,
                 kwargs_slices=dict(edgecolor="white", zorder=2, linewidth=1, alpha=0.7, color=[
-                    '#0085CA', '#0085CA',  # Blue
-                    '#f24a4a', '#f24a4a',  # Red
-                    '#00ad2b', '#00ad2b'   # Green
+                    '#00a7ff', '#00a7ff',  # Brighter Blue
+                    '#ff5555', '#ff5555',  # Brighter Red
+                    '#00ff3c', '#00ff3c'   # Brighter Green
                 ]),
                 kwargs_params=dict(color="white", fontsize=22, fontproperties=font_r, zorder=2, va="center"),
                 kwargs_values=dict(
@@ -119,7 +117,7 @@ def run():
             # Add circles manually after creating the plot
             circle_values = [20, 40, 60, 80]
             for value in circle_values:
-                circle = plt.Circle((0, 0), value, fill=False, color='#333333', 
+                circle = plt.Circle((0, 0), value/100, fill=False, color='#333333', 
                                   linestyle='--', linewidth=1, alpha=0.3)
                 ax.add_artist(circle)
 
