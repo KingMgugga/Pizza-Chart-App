@@ -74,14 +74,14 @@ def run():
         values = [metric_values[m] for m in selected_columns]
         params = [available_metrics[m] for m in selected_columns]
 
-        # Set specific colors for each pair of metrics with increased brightness and 70% opacity
+        # Set specific colors for each pair of metrics with transparency
         slice_colors = [
-            (0, 157, 255, 0.7),  # Brighter blue with 70% opacity
-            (0, 157, 255, 0.7),  # First two metrics (Gambling, Perpetuals)
-            (255, 99, 99, 0.7),  # Brighter red with 70% opacity
-            (255, 99, 99, 0.7),  # Second two metrics (Lending, NFTs)
-            (0, 255, 85, 0.7),   # Brighter green with 70% opacity
-            (0, 255, 85, 0.7)    # Last two metrics (DEX, Staking)
+            (0, 133/255, 202/255, 0.7),  # First two metrics (Gambling, Perpetuals) - Blue with alpha
+            (0, 133/255, 202/255, 0.7),
+            (242/255, 74/255, 74/255, 0.7),  # Second two metrics (Lending, NFTs) - Red with alpha
+            (242/255, 74/255, 74/255, 0.7),
+            (0, 173/255, 43/255, 0.7),  # Last two metrics (DEX, Staking) - Green with alpha
+            (0, 173/255, 43/255, 0.7)
         ]
 
         # Pizza Chart
@@ -96,7 +96,9 @@ def run():
                 other_circle_lw=1,  # Enable other circles
                 other_circle_ls='--',  # Make them dashed
                 other_circle_color='#333333',  # Subtle gray color
-                inner_circle_size=15
+                inner_circle_size=15,
+                straight_line_alpha=0.7,  # Add alpha for straight lines
+                other_circle_alpha=0.3  # Add alpha for other circles
             )
 
             # Calculate circle positions for 20, 40, 60, 80
